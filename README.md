@@ -67,4 +67,14 @@ docker inspect f '{{.NetworkSettings.Networks.red_contenedor.IPAdress}}' contene
 docker inspect f '{{.NetworkSettings.Networks.red_contenedor.IPAdress}}' contenedor2  
 
 # 6. 
-El apartado ports en docker compose se utiliza para la asignación de puertos entre el host y los contenedores. Permite usar puertos específicos del contenedor al host o asignar puertos dinamicamente.  
+El apartado ports en docker compose se utiliza para la asignación de puertos entre el host y los contenedores. Permite usar puertos específicos del contenedor al host o asignar puertos dinamicamente. 
+
+# 7.  
+El registro CNAME se utiliza en el sistema de nombres de dominios para establecer una asociación de alias entre dos nombres de dominio. Un registro CNAME apunta a un nombre de dominio, lo que permite que un nombre de host se refiera a otro de forma "oficial".  
+Ejemplo:  servidor.examen.com. IN CNAME www.examen.com.  
+De esta forma, servidor.examen.com se convierte en un alias de www.examen.com, y cuando alguien intente acceder a servidor.examen.com el DNS redigirá automaticxamente la solicitud a www.examen.com.  
+
+# 8. 
+Para configurar un servidor DNS específico o realizar cambios en la configuración de DNS dentro de un contenedor, podemos utilizar un contenedor específico con el archivo de configuración deseado. Para ello crearemos un contenedor con el archivo de configuración DNS. Para esto debemos modificar el archivo '/etc/resolv.conf'. Podemos copiarlo y añadirlo al directorio de trabajo de nuestro contenedor, y así modificar en el la configuración DNS.  
+
+# 9.
