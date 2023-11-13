@@ -2,7 +2,7 @@
 Primero creamos un contenedor utilizando visual code con una imagen de ubuntu con el siguiente comando:  
 docker run -it --name examen ubuntu  
 Para abrir una consola en un contenedor que se está ejecutando, podemos hacer uso del siguiente comando:  
-docker exec -it examen /bin/bash
+docker exec -it examen /bin/bash  
 o de la siguiente forma:  
 docker exec -it examen sh
 
