@@ -78,4 +78,8 @@ De esta forma, servidor.examen.com se convierte en un alias de www.examen.com, y
 Para configurar un servidor DNS específico o realizar cambios en la configuración de DNS dentro de un contenedor, podemos utilizar un contenedor específico con el archivo de configuración deseado. Para ello crearemos un contenedor con el archivo de configuración DNS. Para esto debemos modificar el archivo '/etc/resolv.conf'. Podemos copiarlo y añadirlo al directorio de trabajo de nuestro contenedor, y así modificar en el la configuración DNS.  
 
 # 9.
-La máquina virtual se me ha fastidiado y no me deja iniciar el docker-compose por tema de permisos. Ya le he dado permisos y el usuario está en el grupo de docker y bind, pero aún así no me deja. Dejo los archivos de configuración de zonas y el docker.compose.yml en el repositorio.  
+La máquina virtual se me ha fastidiado y no me deja iniciar el docker-compose por tema de permisos. Ya le he dado permisos y el usuario está en el grupo de docker y bind, pero aún así no me deja. Dejo los archivos de configuración de zonas y el docker.compose.yml en el repositorio. Para comprobar que funcionase usariamos el comando dig desde el contenedor cliente de tal forma:  
+docker exec -it cliente dig www.tiendadeelectronica.int  
+Debería devolver la IP 172.16.0.1  
+Para ver los logs usariamos el comando:  
+docker logs asir_bind9  
