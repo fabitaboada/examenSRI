@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  asir_bind9:
+    container_name: asir_bind9
+    image: ubuntu/bind9
+    platform: linux/amd64
+    ports:
+      - 53:53
+    networks:
+      bind9_subnet:
+        ipv4_address: 172.28.5.1
+    volumes:
+      - ./conf:/etc/bind
+      - ./zonas:/var/lib/bind
+    command: ["named", "-g", "-c", "/etc/bind/named.conf", "-u", "bind", "-f"]
+  
+  cliente:
+    container_name: cliente
+    image: ubuntu
+    platform: linux/amd64
+    tty: true
+    stdin_open: true
+    dns:
+      - 172.28.5.1
+    networks:
+      bind9_subnet:
+        ipv4_address: 172.28.5.2
+
+networks:
+  bind9_subnet:
+    external: true
