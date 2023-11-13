@@ -60,3 +60,11 @@ networks:
     ipam:  
       config:  
         -subnet: 172.18.0.0/16      Subred definida  
+
+# 5. 
+Para conocer las ips de los contenedores anteriores podemos utilizar el comando:  
+docker inspect f '{{.NetworkSettings.Networks.red_contenedor.IPAdress}}' contenedor1  
+docker inspect f '{{.NetworkSettings.Networks.red_contenedor.IPAdress}}' contenedor2  
+
+# 6. 
+El apartado ports en docker compose se utiliza para la asignación de puertos entre el host y los contenedores. Permite usar puertos específicos del contenedor al host o asignar puertos dinamicamente.  
