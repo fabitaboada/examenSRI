@@ -122,7 +122,8 @@ apt install -y dnsutils
 
 dig @ 172.28.5.1 www.tiendadeelectronica.int   
 
-Debería devolver la IP 172.16.0.1  
+Debería devolver la IP 172.16.0.1 
+Por alguna razón no me funciona bien y no me devuelve el resultado correcto.   
 Para ver los logs usariamos el comando:  
 docker logs asir_bind9  
 Este es el resultado del comando anterior:  

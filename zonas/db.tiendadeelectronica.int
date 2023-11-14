@@ -1,19 +1,13 @@
-$TTL    604800
-@       IN      SOA     tiendadeelectronica.int. admin.tiendadeelectronica.int. (
-                          3         ; Serial
-                     604800         ; Refresh
-                      86400         ; Retry
-                    2419200         ; Expire
-                     604800 )       ; Negative Cache TTL
+$TTL 38400	; 10 hours 40 minutes
+@		IN SOA	ns.tiendadeelectronica.int. some.email.address. (
+				10000002   ; serial
+				10800      ; refresh (3 hours)
+				3600       ; retry (1 hour)
+				604800     ; expire (1 week)
+				38400      ; minimum (10 hours 40 minutes)
+				)
+@		IN NS	ns.tiendadeelectronica.int.
 
-; Name Servers
-tiendadeelectronica.int.  IN      NS      ns1.tiendadeelectronica.int.
-
-; A Records
-www.tiendadeelectronica.int.  IN      A       172.16.0.1
-
-; CNAME Records
-owncloud.tiendadeelectronica.int. IN CNAME www.tiendadeelectronica.int.
-
-; TXT Record
+www.tiendadeelectronica.int.		IN A		172.16.0.1
+owncloud.tiendadeelectronica.int.	IN CNAME	www.tiendadeelectronica.int.
 tiendadeelectronica.int. IN TXT "1234ASDF"
