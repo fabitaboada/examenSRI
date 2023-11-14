@@ -115,12 +115,12 @@ Deespués levantamos el servicio con el comando:
 docker-compose up  
 Para comprobar que funcionase usariamos el comando dig desde el contenedor cliente de tal forma: 
 Tenemos que instalar dnsutils, para ello:   
-Entramos en el contenedor y abrimos una consola: 
-Attach Shell 
-apt update  
-apt install -y dnsutils  
+Entramos en el contenedor y abrimos una consola:   
+Attach Shell   
+apt update    
+apt install -y dnsutils    
 
-dig www.tiendadeelectronica.int   
+dig @ 172.28.5.1 www.tiendadeelectronica.int   
 
 Debería devolver la IP 172.16.0.1  
 Para ver los logs usariamos el comando:  
