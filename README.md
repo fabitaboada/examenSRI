@@ -181,4 +181,9 @@ exec /usr/sbin/named -u "bind" "-g" "-g -c /etc/bind/named.conf -u bind -f"
 14-Nov-2023 17:09:51.793 zone tiendadeelectronica.int/IN: not loaded due to errors.
 14-Nov-2023 17:09:51.793 all zones loaded
 14-Nov-2023 17:09:51.797 running
-14-Nov-2023 17:09:51.813 managed-keys-zone: Initializing automatic trust anchor management for zone '.'; DNSKEY ID 20326 is now trusted, waiving the normal 30-day waiting period.
+14-Nov-2023 17:09:51.813 managed-keys-zone: Initializing automatic trust anchor management for zone '.'; DNSKEY ID 20326 is now trusted, waiving the normal 30-day waiting period.   
+
+
+Por alguna razón, no me carga bien el archivo de configuración de zona y por eso no puedo hacer el dig. Están todos los archivos de configuración en el repositorio. Los he revisado muchas veces y no encuentro el error. Todas las carpetas tienen los permisos necesarios y están colocadas en su sitio. Los archivos de configuración en /etc/bind y los de zona en /var/lib/bind. Es posible que sea un fallo de mi máquina virtual ya que la he tenido que restaurar a un punto anterior varias veces porque me falla.  
+
+
