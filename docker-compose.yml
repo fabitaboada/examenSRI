@@ -13,20 +13,9 @@ services:
     volumes:
       - ./conf:/etc/bind
       - ./zonas:/var/lib/bind
-    command: ["named", "-g", "-c", "/etc/bind/named.conf", "-u", "bind", "-f"]
+    
   
-  cliente:
-    container_name: cliente
-    image: ubuntu
-    platform: linux/amd64
-    tty: true
-    stdin_open: true
-    dns:
-      - 172.28.5.1
-    networks:
-      bind9_subnet:
-        ipv4_address: 172.28.5.2
-
+  
 networks:
   bind9_subnet:
     external: true
