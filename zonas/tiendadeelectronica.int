@@ -17,4 +17,3 @@ owncloud.tiendadeelectronica.int. IN CNAME www.tiendadeelectronica.int.
 
 ; TXT Record
 tiendadeelectronica.int. IN TXT "1234ASDF"
-
