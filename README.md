@@ -94,18 +94,7 @@ services:
     volumes:  
       - ./conf:/etc/bind   #Aquí mapeamos los archivos de configuración de bind  
       - ./zonas:/var/lib/bind   #Aqui mapeamos el directorio de zonas 
-  
-  cliente:  
-    container_name: cliente  
-    image: ubuntu  
-    platform: linux/amd64  
-    tty: true  
-    stdin_open: true  
-    dns:    #configuramos para que el cliente use el DNS  
-      - 172.28.5.1  
-    networks:  
-      bind9_subnet:  #nombre de la red que usaremos para las pruebas  
-        ipv4_address: 172.28.5.2  
+
 
 networks:  
   bind9_subnet:  
@@ -124,8 +113,15 @@ $ docker network create \
   
 Deespués levantamos el servicio con el comando:  
 docker-compose up  
-Para comprobar que funcionase usariamos el comando dig desde el contenedor cliente de tal forma:  
-docker exec -it cliente dig www.tiendadeelectronica.int  
+Para comprobar que funcionase usariamos el comando dig desde el contenedor cliente de tal forma: 
+Tenemos que instalar dnsutils, para ello:   
+Entramos en el contenedor y abrimos una consola: 
+Attach Shell 
+apt update  
+apt install -y dnsutils  
+
+dig www.tiendadeelectronica.int   
+
 Debería devolver la IP 172.16.0.1  
 Para ver los logs usariamos el comando:  
 docker logs asir_bind9  
