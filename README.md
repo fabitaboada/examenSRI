@@ -76,16 +76,52 @@ De esta forma, servidor.examen.com se convierte en un alias de www.examen.com, y
 
 # 8. 
 Para configurar un servidor DNS específico o realizar cambios en la configuración de DNS dentro de un contenedor, podemos utilizar un contenedor específico con el archivo de configuración deseado. Para ello crearemos un contenedor con el archivo de configuración DNS. Para esto debemos modificar el archivo '/etc/resolv.conf'. Podemos copiarlo y añadirlo al directorio de trabajo de nuestro contenedor, y así modificar en el la configuración DNS.  
+También podemos utilizar volúmenes para almacenar la configuración del contenedor DNS. Para ello, cuando creamos un nuevo contenedor, tenemos que montar el volumen en la misma ubicación donde el conetendor DNS espera encontrar su configuración.  
 
 # 9.
-Dejo los archivos de configuración de zonas y el docker.compose.yml en el repositorio.  
+Dejo los archivos de configuración de zonas y el docker.compose.yml en el repositorio. Aqui explico las partes del docker-compose:  
+
+services:  
+  asir_bind9:  
+    container_name: asir_bind9     #nombre del contenedor  
+    image: ubuntu/bind9     #plataforma de la imagen  
+    platform: linux/amd64  
+    ports:  #mapeamos los puertos 53 tanto tcp como udp  
+      - 53:53  
+    networks:  
+      bind9_subnet:  
+        ipv4_address: 172.28.5.1  
+    volumes:  
+      - ./conf:/etc/bind   #Aquí mapeamos los archivos de configuración de bind  
+      - ./zonas:/var/lib/bind   #Aqui mapeamos el directorio de zonas 
+  
+  cliente:  
+    container_name: cliente  
+    image: ubuntu  
+    platform: linux/amd64  
+    tty: true  
+    stdin_open: true  
+    dns:    #configuramos para que el cliente use el DNS  
+      - 172.28.5.1  
+    networks:  
+      bind9_subnet:  #nombre de la red que usaremos para las pruebas  
+        ipv4_address: 172.28.5.2  
+
+networks:  
+  bind9_subnet:  
+    external: true  
+
+
+
 Una vez tenemos configurado el docker-compose.yml y añadidos los archivos de configuracion de bind y de zona, creamos la subred de tal forma para poder probar nuestro servidor:  
+
 $ docker network create \  
   --driver=bridge \  
   --subnet=172.28.0.0/16 \  
   --ip-range=172.28.5.0/24 \  
   --gateway=172.28.5.254 \  
   bind9_subnet  
+  
 Deespués levantamos el servicio con el comando:  
 docker-compose up  
 Para comprobar que funcionase usariamos el comando dig desde el contenedor cliente de tal forma:  
